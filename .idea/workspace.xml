@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9764d55-2040-47c0-89c6-3aad6b48271e" name="Default" comment="">
+    <list default="true" id="c9764d55-2040-47c0-89c6-3aad6b48271e" name="Default" comment="25.08.2017">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/NumberPuzzle/NumberPuzzleClass.class" afterPath="$PROJECT_DIR$/out/production/NumberPuzzle/NumberPuzzleClass.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NumberPuzzleClass.java" afterPath="$PROJECT_DIR$/src/NumberPuzzleClass.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -96,7 +96,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion.SSH" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -216,6 +216,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\AslaevAR\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="c9764d55-2040-47c0-89c6-3aad6b48271e" name="Default" comment="" />
@@ -224,6 +227,14 @@
       <option name="presentableId" value="Default" />
       <updated>1503640153633</updated>
     </task>
+    <task id="LOCAL-00001" summary="25.08.2017">
+      <created>1503654992240</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1503654992240</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
