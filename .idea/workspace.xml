@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9764d55-2040-47c0-89c6-3aad6b48271e" name="Default" comment="25.08.2017">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/NumberPuzzle/NumberPuzzleClass.class" afterPath="$PROJECT_DIR$/out/production/NumberPuzzle/NumberPuzzleClass.class" />
+    <list default="true" id="c9764d55-2040-47c0-89c6-3aad6b48271e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -234,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1503654992240</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="25.08.2017">
+      <created>1503655948155</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1503655948155</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
