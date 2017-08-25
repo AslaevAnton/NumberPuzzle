@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c9764d55-2040-47c0-89c6-3aad6b48271e" name="Default" comment="" />
+    <list default="true" id="c9764d55-2040-47c0-89c6-3aad6b48271e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/NumberPuzzleClass.java" afterPath="$PROJECT_DIR$/src/NumberPuzzleClass.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,8 +18,8 @@
       <file leaf-file-name="NumberPuzzleClass.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/NumberPuzzleClass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="13" column="74" lean-forward="false" selection-start-line="13" selection-start-column="74" selection-end-line="13" selection-end-column="74" />
+            <state relative-caret-position="366">
+              <caret line="87" column="17" lean-forward="false" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -32,6 +35,9 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -254,6 +260,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="25.08.2017" />
+    <option name="LAST_COMMIT_MESSAGE" value="25.08.2017" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -261,8 +271,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/NumberPuzzleClass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="13" column="74" lean-forward="false" selection-start-line="13" selection-start-column="74" selection-end-line="13" selection-end-column="74" />
+        <state relative-caret-position="366">
+          <caret line="87" column="17" lean-forward="false" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

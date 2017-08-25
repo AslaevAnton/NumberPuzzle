@@ -1,20 +1,22 @@
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.*;
+import java.util.Random;
 
 public class NumberPuzzleClass {
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int[] np = new int[16];
-        int num;
-        setNP(np);
+        int num=1;
+        setRandomNP(np);
         print(np);
-        for(int i=0;i<5;i++){
+        System.out.println(solutionExsist(np));
+        while(!win(np) && num>0){
             num=Integer.parseInt(reader.readLine());
             System.out.println(moveIsPossible(np, num)?"":"Ход не возможен");
             print(np);
         }
-
     }
 
 
@@ -32,7 +34,7 @@ public class NumberPuzzleClass {
         }
     }
     public static void setNP(int[] np) {
-            for(int i=0;i<16;i++)
+            for(int i=0;i<15;i++)
                 np[i]=i+1;
             np[15]=99;
         }
@@ -40,7 +42,7 @@ public class NumberPuzzleClass {
         for(int i=0;i<4;i++)
             for(int j=0;j<4;j++)
                 if(np[i*4+j]==value){
-                    if((i-1)>0 && np[(i-1)*4+j]==99){
+                    if((i-1)>=0 && np[(i-1)*4+j]==99){
                         np[(i-1)*4+j]=np[i*4+j];
                         np[i*4+j]=99;
                         return true;
@@ -51,13 +53,13 @@ public class NumberPuzzleClass {
                         np[i*4+j]=99;
                         return true;
                     }
-                    if((j-1)>0 && np[i*4+(j-1)]==99){
+                    if((j-1)>=0 && np[i*4+(j-1)]==99){
                         np[i*4+(j-1)]=np[i*4+j];
                         np[i*4+j]=99;
                         return true;
                     }
 
-                    if((j+1)<40 && np[i*4+(j+1)]==99) {
+                    if((j+1)<4 && np[i*4+(j+1)]==99) {
                         np[i*4+(j+1)]=np[i*4+j];
                         np[i*4+j]=99;
                         return true;
@@ -65,6 +67,32 @@ public class NumberPuzzleClass {
                 }
         return false;
 
+    }
+    public static boolean solutionExsist(int[] np){
+        int inv = 0;
+        for (int i=0; i<16; ++i)
+                for (int j=0; j<i; ++j)
+                    if (np[j] > np[i])
+                        ++inv;
+        for (int i=0; i<16; ++i)
+            if (np[i] == 0)
+                inv += 1 + i / 4;
+
+        return (inv%2==0?true:false);
+    }
+    public static void setRandomNP(int[] np) {
+        Random random =new Random();
+        for(int i=0;i<15;i++)
+            np[i]=15-i;
+        np[0]=14;
+        np[1]=15;
+        np[15]=99;
+    }
+    public static boolean win(int[] np){
+        for(int i=0;i<15;i++)
+            if(np[i]>np[i+1])
+                return false;
+        return true;
     }
 
 }
