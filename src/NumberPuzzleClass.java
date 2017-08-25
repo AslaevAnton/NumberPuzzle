@@ -9,7 +9,7 @@ public class NumberPuzzleClass {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int[] np = new int[16];
         int num=1;
-        setRandomNP(np);
+        setRandomNP(np, 10);
         print(np);
         System.out.println(solutionExsist(np));
         while(!win(np) && num>0){
@@ -81,12 +81,24 @@ public class NumberPuzzleClass {
         return (inv%2==0?true:false);
     }
     public static void setRandomNP(int[] np) {
+        setRandomNP(np,0);
+    }
+    public static void setRandomNP(int[] np, int randNum) {
         Random random =new Random();
+        int tempNum;
+        int tempI1, tempI2;
         for(int i=0;i<15;i++)
             np[i]=15-i;
-        np[0]=14;
-        np[1]=15;
         np[15]=99;
+        while(!solutionExsist(np)){
+            for(int i=0;i<randNum;i++){
+                tempI1=random.nextInt(15);
+                tempI2=random.nextInt(15);
+                tempNum=np[tempI1];
+                np[tempI1]=np[tempI2];
+                np[tempI2]=tempNum;
+            }
+        }
     }
     public static boolean win(int[] np){
         for(int i=0;i<15;i++)
