@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.*;
 import java.util.Random;
 
-public class NumberPuzzleClass {
+public class NumberPuzzleClass {/*
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int[] np = new int[16];
@@ -17,8 +17,9 @@ public class NumberPuzzleClass {
             System.out.println(moveIsPossible(np, num)?"":"Ход не возможен");
             print(np);
         }
-    }
 
+    }
+*/
 
     public static void print(int[] np) {
         for(int i=0;i<16;i++) {
