@@ -20,6 +20,15 @@ public class NumberPuzzleClass {/*
 
     }
 */
+    //int[] np = new int[15];
+
+    //public NumberPuzzleClass() {
+    //    setNP(this.np);
+    //}
+
+    //public int[] getNp() {
+    //    return np;
+    //}
 
     public static void print(int[] np) {
         for(int i=0;i<16;i++) {
@@ -67,6 +76,47 @@ public class NumberPuzzleClass {/*
                     }
                 }
         return false;
+
+    }
+    public static int moveIsPossible( int key, int[] np){
+        //key = 0 down
+        //key = 1 up
+        //key = 2 right
+        //key = 3 left
+        for (int z = 0; z < 16; z++) {
+
+
+            for (int i = 0; i < 4; i++)
+                for (int j = 0; j < 4; j++)
+                    if (np[i * 4 + j] == np[z]) {
+                        //up
+                        if ((i - 1) >= 0 && np[(i - 1) * 4 + j] == 99 && key == 1) {
+                            np[(i - 1) * 4 + j] = np[i * 4 + j];
+                            np[i * 4 + j] = 99;
+                            return np[z];
+                        }
+                        //down
+                        if ((i + 1) < 4 && np[(i + 1) * 4 + j] == 99 && key == 0) {
+                            //return np[z];
+                            np[(i + 1) * 4 + j] = np[i * 4 + j];
+                            np[i * 4 + j] = 99;
+                            return z;
+                        }
+                        //left
+                        if ((j - 1) >= 0 && np[i * 4 + (j - 1)] == 99 && key == 3) {
+                            np[i * 4 + (j - 1)] = np[i * 4 + j];
+                            np[i * 4 + j] = 99;
+                            return np[z];
+                        }
+                        //right
+                        if ((j + 1) < 4 && np[i * 4 + (j + 1)] == 99 && key == 2) {
+                            np[i * 4 + (j + 1)] = np[i * 4 + j];
+                            np[i * 4 + j] = 99;
+                            return np[z];
+                        }
+                    }
+        }
+        return 0;
 
     }
     public static boolean solutionExsist(int[] np){
