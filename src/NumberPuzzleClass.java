@@ -83,36 +83,38 @@ public class NumberPuzzleClass {/*
         //key = 1 up
         //key = 2 right
         //key = 3 left
+        int rezult=0;
         for (int z = 0; z < 16; z++) {
 
 
             for (int i = 0; i < 4; i++)
                 for (int j = 0; j < 4; j++)
                     if (np[i * 4 + j] == np[z]) {
+                        rezult=np[z];
                         //up
                         if ((i - 1) >= 0 && np[(i - 1) * 4 + j] == 99 && key == 1) {
                             np[(i - 1) * 4 + j] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
-                            return np[z];
+                            return rezult;
                         }
                         //down
                         if ((i + 1) < 4 && np[(i + 1) * 4 + j] == 99 && key == 0) {
                             //return np[z];
                             np[(i + 1) * 4 + j] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
-                            return z;
+                            return rezult;
                         }
                         //left
                         if ((j - 1) >= 0 && np[i * 4 + (j - 1)] == 99 && key == 3) {
                             np[i * 4 + (j - 1)] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
-                            return np[z];
+                            return rezult;
                         }
                         //right
                         if ((j + 1) < 4 && np[i * 4 + (j + 1)] == 99 && key == 2) {
                             np[i * 4 + (j + 1)] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
-                            return np[z];
+                            return rezult;
                         }
                     }
         }
