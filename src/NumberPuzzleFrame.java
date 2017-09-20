@@ -14,7 +14,7 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener {
     int emptyRect=15;
     int shiftInt=0;
     int tempRect=0;
-    Timer mainTimer = new Timer(2, this); //Запускет actionPerform каждые 20 милисекунд
+    Timer mainTimer = new Timer(1, this); //Запускет actionPerform каждые 20 милисекунд
     public NumberPuzzleFrame() {
         mainTimer.start();
         addKeyListener(new MyKeyAdaptor());
