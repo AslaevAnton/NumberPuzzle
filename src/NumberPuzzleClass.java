@@ -1,4 +1,5 @@
 import javax.xml.bind.SchemaOutputResolver;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.*;
@@ -48,34 +49,34 @@ public class NumberPuzzleClass {/*
                 np[i]=i+1;
             np[15]=99;
         }
-    public static boolean moveIsPossible(int[] np, int value){
-        for(int i=0;i<4;i++)
+    public static int moveIsPossible(int[] np, int value){
+        for(int i=0;i<4&&value!=99;i++)
             for(int j=0;j<4;j++)
                 if(np[i*4+j]==value){
                     if((i-1)>=0 && np[(i-1)*4+j]==99){
-                        np[(i-1)*4+j]=np[i*4+j];
-                        np[i*4+j]=99;
-                        return true;
+                        //np[(i-1)*4+j]=np[i*4+j];
+                        //np[i*4+j]=99;
+                        return KeyEvent.VK_UP;
                     }
 
                     if((i+1)<4 && np[(i+1)*4+j]==99){
-                        np[(i+1)*4+j]=np[i*4+j];
-                        np[i*4+j]=99;
-                        return true;
+                        //np[(i+1)*4+j]=np[i*4+j];
+                        //np[i*4+j]=99;
+                        return KeyEvent.VK_DOWN;
                     }
                     if((j-1)>=0 && np[i*4+(j-1)]==99){
-                        np[i*4+(j-1)]=np[i*4+j];
-                        np[i*4+j]=99;
-                        return true;
+                        //np[i*4+(j-1)]=np[i*4+j];
+                        //np[i*4+j]=99;
+                        return KeyEvent.VK_LEFT;
                     }
 
                     if((j+1)<4 && np[i*4+(j+1)]==99) {
-                        np[i*4+(j+1)]=np[i*4+j];
-                        np[i*4+j]=99;
-                        return true;
+                        //np[i*4+(j+1)]=np[i*4+j];
+                        //np[i*4+j]=99;
+                        return KeyEvent.VK_RIGHT;
                     }
                 }
-        return false;
+        return -1;
 
     }
     public static int moveIsPossible( int key, int[] np){
@@ -92,26 +93,26 @@ public class NumberPuzzleClass {/*
                     if (np[i * 4 + j] == np[z]) {
                         rezult=np[z];
                         //up
-                        if ((i - 1) >= 0 && np[(i - 1) * 4 + j] == 99 && key == 1) {
+                        if ((i - 1) >= 0 && np[(i - 1) * 4 + j] == 99 && key == KeyEvent.VK_UP) {
                             np[(i - 1) * 4 + j] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
                             return rezult;
                         }
                         //down
-                        if ((i + 1) < 4 && np[(i + 1) * 4 + j] == 99 && key == 0) {
+                        if ((i + 1) < 4 && np[(i + 1) * 4 + j] == 99 && key == KeyEvent.VK_DOWN) {
                             //return np[z];
                             np[(i + 1) * 4 + j] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
                             return rezult;
                         }
                         //left
-                        if ((j - 1) >= 0 && np[i * 4 + (j - 1)] == 99 && key == 3) {
+                        if ((j - 1) >= 0 && np[i * 4 + (j - 1)] == 99 && key == KeyEvent.VK_LEFT) {
                             np[i * 4 + (j - 1)] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
                             return rezult;
                         }
                         //right
-                        if ((j + 1) < 4 && np[i * 4 + (j + 1)] == 99 && key == 2) {
+                        if ((j + 1) < 4 && np[i * 4 + (j + 1)] == 99 && key == KeyEvent.VK_RIGHT) {
                             np[i * 4 + (j + 1)] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
                             return rezult;
@@ -157,6 +158,7 @@ public class NumberPuzzleClass {/*
         for(int i=0;i<15;i++)
             if(np[i]>np[i+1])
                 return false;
+        print(np);
         return true;
     }
 

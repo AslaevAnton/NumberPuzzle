@@ -93,22 +93,25 @@ public class NumberPuzzleRect {
                // Thread.sleep(100);
 
     }
-    public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT){
+    public void keyReleased(int e) {
+        if (e == KeyEvent.VK_RIGHT){
             ddx=1;
             ddy=0;
         }
-        if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+        if(e == KeyEvent.VK_LEFT) {
             ddx=-1;
             ddy=0;
         }
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e == KeyEvent.VK_UP) {
             ddy = -1;
             ddx=0;
         }
-        if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+        if(e == KeyEvent.VK_DOWN) {
             ddy = 1;
             ddx=0;
         }
+    }
+    public boolean isMouseClicked (Point p){
+        return(p.getX()>=dx&&p.getX()<=dx+size&&p.getY()>=dy&&p.getY()<=dy+size);
     }
 }
