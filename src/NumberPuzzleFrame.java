@@ -8,7 +8,6 @@ import java.awt.event.*;
 public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseListener {
     int[] np = new int[16];
     NumberPuzzleRect[] rect = new NumberPuzzleRect[16];
-    int emptyRect=15;
     int shiftInt=0;
     int tempRect=0;
     Timer mainTimer = new Timer(1, this); //Запускет actionPerform каждые 20 милисекунд
@@ -17,27 +16,19 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
         addMouseListener(this);
         addKeyListener(new MyKeyAdaptor());
         setFocusable(true);
-        //NumberPuzzleClass.setNP(np);
+        NumberPuzzleClass.setNP(np);
         NumberPuzzleClass.setRandomNP(np, 10);
         NumberPuzzleClass.print(np);
 
         int r=100;
         for (int i = 0; i < 16; i++) {
             rect[i]= new NumberPuzzleRect((i)%4,(i)/4, r, np[i]);
-
         }
 
     }
 
     public void paint(Graphics g) {
         g=(Graphics2D)g;
-
-        //int r=(int)(Math.min(this.getSize().getHeight(),this.getSize().getWidth())-5)/4;
-
-       // for (int i = 0; i < 15; i++) {
-            //rect[i].setXYSize((i)%4,(i)/4);
-            //rect[i].setText(np[i]);
-        //}
 
         g.clearRect(0,0,700,600);
         Font font = new Font("Arial", Font.ITALIC, 10);
@@ -77,44 +68,67 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
     @Override
     public void mouseClicked(MouseEvent e) {
         int resultMoveIsPossible=-1;
-        JOptionPane.showMessageDialog(null,tempRect);
+        Point point = e.getPoint();
+        Point shiftPoint = e.getPoint();
         for (int i = 0; i < 15; i++) {
-            if(np[i]!=99)
-                resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, np[i]);
-            //System.out.println(i+" "+rect[i].isMouseClicked(e.getPoint())+" "+rect[i].getText()+" "+np[i]+" "+resultMoveIsPossible);
+            resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(rect[i].getText()));
+
             if(rect[i].isMouseClicked(e.getPoint())&&resultMoveIsPossible>=0) {
-                tempRect = i;
-                NumberPuzzleClass.moveIsPossible(resultMoveIsPossible, np);
-                if(resultMoveIsPossible==KeyEvent.VK_DOWN&&emptyRect - 4 >=0){
-                    emptyRect -= 4;
-                    rect[i].keyReleased(resultMoveIsPossible);
-                    shiftInt=100;
-                    //JOptionPane.showMessageDialog(null, rect[i].getText());
-                    System.out.println("down "+np[i]+" "+rect[i].getText());
-                }
-                if(resultMoveIsPossible==KeyEvent.VK_UP&&emptyRect + 4 <= 15){
-                    emptyRect += 4;
-                    rect[i].keyReleased(resultMoveIsPossible);
-                    shiftInt=100;
-                    System.out.println("up "+tempRect+" "+np[i]+" "+rect[i].getText());
-                }
-                if(resultMoveIsPossible==KeyEvent.VK_LEFT&&emptyRect%4 + 1 < 4){
-                    emptyRect ++;
-                    rect[i].keyReleased(resultMoveIsPossible);
-                    shiftInt=100;
-                    System.out.println("left");
-                }
-                if(resultMoveIsPossible==KeyEvent.VK_RIGHT&&emptyRect%4 - 1 >= 0){
-                    emptyRect --;
-                    rect[i].keyReleased(resultMoveIsPossible);
-                    shiftInt=100;
-                    System.out.println("right");
-                }
+                shift(resultMoveIsPossible,Integer.parseInt(rect[i].getText()));
                 NumberPuzzleClass.print(np);
-                print(rect);
-                break;
+                i=15;
+                return;
             }
-        }
+            System.out.println(i+" "+resultMoveIsPossible);
+        }/*
+        for (int i = 0; i < 15; i++) {
+            resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(rect[i].getText()));
+            if(point.x+100<400&&resultMoveIsPossible>0){
+                shiftPoint.setLocation(point.x+100,point.y);
+                System.out.println("point.x+100<400"+point+" "+shiftPoint);
+                if(rect[i].isMouseClicked(shiftPoint)&&resultMoveIsPossible>=0) {
+                    shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
+                    NumberPuzzleClass.print(np);
+                    //i=15;
+                    mouseClicked(e);
+                    break;
+                }
+            }
+            if(point.x-100>=0&&resultMoveIsPossible>0){
+                shiftPoint.setLocation(point.x-100,point.y);
+                System.out.println("point.x-100>=0"+point+" "+shiftPoint);
+                if(rect[i].isMouseClicked(shiftPoint)&&resultMoveIsPossible>=0) {
+                    shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
+                    NumberPuzzleClass.print(np);
+                    //i=15;
+                    mouseClicked(e);
+                    break;
+                }
+            }
+            if(point.y+100<400&&resultMoveIsPossible>0){
+                shiftPoint.setLocation(point.x,point.y+100);
+                System.out.println("point.y+100<400"+point+" "+shiftPoint);
+                if(rect[i].isMouseClicked(shiftPoint)&&resultMoveIsPossible>=0) {
+                    shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
+                    NumberPuzzleClass.print(np);
+                    //i=15;
+                    mouseClicked(e);
+                    break;
+                }
+            }
+            if(point.y-100>=0&&resultMoveIsPossible>0){
+                shiftPoint.setLocation(point.x,point.y-100);
+                System.out.println("point.y-100>=0"+point+" "+shiftPoint);
+                if(rect[i].isMouseClicked(shiftPoint)&&resultMoveIsPossible>=0) {
+                    shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
+                    NumberPuzzleClass.print(np);
+                    //i=15;
+                    mouseClicked(e);
+                    break;
+                }
+            }
+        }*/
+
     }
 
     @Override
@@ -140,79 +154,27 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
         @Override
         public void keyReleased(KeyEvent e) {
 
-            int tempPos=0;
-            JOptionPane.showMessageDialog(null,tempRect);
-            if(e.getKeyCode()==KeyEvent.VK_DOWN) {
-                tempPos=NumberPuzzleClass.moveIsPossible(e.getKeyCode(), np);
-                for(int i=0; i<16;i++) {
-                    if(rect[i].getText().equals(Integer.toString(tempPos)))
-                        tempRect = i;
-                }
-                if ((emptyRect - 4 >=0)) {
-                    emptyRect -= 4;
-                    rect[tempRect].keyReleased(e.getKeyCode());
-                    shiftInt=100;
-                }
-                NumberPuzzleClass.print(np);
-            }
-            if(e.getKeyCode()==KeyEvent.VK_UP) {
-                tempPos=NumberPuzzleClass.moveIsPossible(e.getKeyCode(), np);
-                for(int i=0; i<16;i++) {
-                    if(rect[i].getText().equals(Integer.toString(tempPos))) {
-                        tempRect = i;
-                        //JOptionPane.showMessageDialog(null, rect[i].getText()+" "+tempPos);
-                    }
-                }
-                if ((emptyRect + 4 <= 15)) {
-                    //JOptionPane.showMessageDialog(null, rect[tempRect].getText()+" "+tempPos);
-                    emptyRect += 4;
-                    rect[tempRect].keyReleased(e.getKeyCode());
-                    shiftInt=100;
-
-                    System.out.println("up "+tempRect+" "+np[tempRect]+" "+rect[tempRect].getText());
-                }
-                NumberPuzzleClass.print(np);
-            }
-            if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
-                tempPos=NumberPuzzleClass.moveIsPossible(e.getKeyCode(), np);
-                for(int i=0; i<16;i++) {
-                    if(rect[i].getText().equals(Integer.toString(tempPos)))
-                        tempRect=i;
-                }
-                if ((emptyRect%4 - 1 >= 0)) {
-                    emptyRect --;
-                    rect[tempRect].keyReleased(e.getKeyCode());
-                    shiftInt=100;
-                }
-                NumberPuzzleClass.print(np);
-            }
-            if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-                tempPos=NumberPuzzleClass.moveIsPossible(e.getKeyCode(), np);
-                for(int i=0; i<16;i++) {
-                    if(rect[i].getText().equals(Integer.toString(tempPos)))
-                        tempRect=i;
-                }
-                if (((emptyRect%4 + 1) < 4)) {
-                    emptyRect ++;
-                    rect[tempRect].keyReleased(e.getKeyCode());
-                    shiftInt=100;
-                }
-                NumberPuzzleClass.print(np);
-            }
+            shift(e.getKeyCode());
+            NumberPuzzleClass.print(np);
         }
     }
-    public static void print(NumberPuzzleRect[] rect) {
-        System.out.println();
-        for(int i=0;i<16;i++) {
-            if(rect[i].getText().equals("99"))
-                System.out.print("   ");
-            else
-            if (Integer.parseInt(rect[i].getText())< 10)
-                System.out.print(Integer.parseInt(rect[i].getText()) + "  ");
-            else
-                System.out.print(Integer.parseInt(rect[i].getText()) + " ");
-            if ((i + 1) % 4 == 0)
-                System.out.println();
+    public void shift(int e_KeyCode){
+        int tempPos=0;
+        tempPos=NumberPuzzleClass.moveIsPossible(e_KeyCode, np);
+        for(int i=0; i<16;i++) {
+            if(rect[i].getText().equals(Integer.toString(tempPos)))
+                tempRect = i;
         }
+            rect[tempRect].keyReleased(e_KeyCode);
+        shiftInt=100;
+    }
+    public void shift(int e_KeyCode,int tempPos){
+        NumberPuzzleClass.moveIsPossible(e_KeyCode, np);
+        for(int i=0; i<16;i++) {
+            if(rect[i].getText().equals(Integer.toString(tempPos)))
+                tempRect = i;
+        }
+        rect[tempRect].keyReleased(e_KeyCode);
+        shiftInt=100;
     }
 }
