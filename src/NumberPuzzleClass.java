@@ -62,6 +62,7 @@ public class NumberPuzzleClass {/*
                     if((i+1)<4 && np[(i+1)*4+j]==99){
                         //np[(i+1)*4+j]=np[i*4+j];
                         //np[i*4+j]=99;
+                        System.out.println(i+" "+j+" "+np[i*4+j]);
                         return KeyEvent.VK_DOWN;
                     }
                     if((j-1)>=0 && np[i*4+(j-1)]==99){

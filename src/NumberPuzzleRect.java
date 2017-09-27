@@ -27,6 +27,10 @@ public class NumberPuzzleRect {
     public String getText() {
         return text;
     }
+    public String getRect() {
+
+        return "x="+dx+", y="+dy+" x1="+(dx+size)+", y1="+(dy+size);
+    }
 
     public void setX(int x) {
         this.x = x;
