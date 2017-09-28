@@ -42,15 +42,15 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
             //g.setFont(font);
             //g.drawString("x="+rect[i].getX()+" y="+rect[i].getY()+" dx:"+rect[i].getDx()+" dy:"+rect[i].getDy()+"text: "+rect[i].getText(), 450, 120+i*10);
         }
-        g.setColor(Color.black);
-        g.setFont(font);
-        g.drawString(Integer.toString(shiftRectList.size()),450, 120);
-        Iterator<NumberPuzzleRect> i = shiftRectList.iterator();
-        int pos=0;
-        while (i.hasNext()){
-            g.drawString(i.next().getText(),450, 150+pos*10);
-            pos++;
-        }
+        //g.setColor(Color.black);
+        //g.setFont(font);
+        //g.drawString(Integer.toString(shiftRectList.size()),450, 120);
+        //Iterator<NumberPuzzleRect> i = shiftRectList.iterator();
+        //int pos=0;
+        //while (i.hasNext()){
+        //    g.drawString(i.next().getText(),450, 150+pos*10);
+        //    pos++;
+        //}
         //g.drawString(Integer.toString(emptyRect), 450, 100);
     }
 
@@ -98,28 +98,54 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
         Point shiftPoint = e.getPoint();
         int currentRect=-1;
         for (int i = 0; i < 15; i++) {
-            resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(rect[i].getText()));
-
-            if(rect[i].isMouseClicked(e.getPoint())) {
-                currentRect=i;
-                if(resultMoveIsPossible>=0) {
-                    System.out.println("point "+e.getPoint()+" "+rect[i].getRect()+ " "+rect[i].getText()+" "+resultMoveIsPossible);
-                    shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
-                    NumberPuzzleClass.print(np);
-
-                    i = 15;
-                    return;
-                }
+            if (rect[i].isMouseClicked(e.getPoint())) {
+                currentRect = i;
             }
-            System.out.println(i+" "+resultMoveIsPossible);
         }
+        resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(rect[currentRect].getText()));
+        ArrayList<NumberPuzzleRect> shiftList = NumberPuzzleClass.shiftList(rect,np,Integer.parseInt(rect[currentRect].getText()));
+/*
+        if(shiftList.size()>0) {
+            System.out.println("shiftList");
+            Iterator<NumberPuzzleRect> sli = shiftList.iterator();
+            while (sli.hasNext()) {
+                System.out.print(sli.next().getText()+" ");
+            }
+            System.out.println();
+        }
+*/
+
+        //for (int i = 0; i < 15; i++) {
+            resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(shiftList.get(0).getText()));
+
+            //if(rect[i].isMouseClicked(e.getPoint())) {
+                //currentRect=i;
+                //if(currentRect>=0&&resultMoveIsPossible>=0) {
+                    //System.out.println("point "+e.getPoint()+" "+rect[i].getRect()+ " "+rect[i].getText()+" "+resultMoveIsPossible);
+
+                    while (shiftList.size()>0) {
+                        shift(resultMoveIsPossible, Integer.parseInt(shiftList.get(0).getText()));
+                        shiftList.remove(0);
+                        NumberPuzzleClass.print(np);
+                    }
+
+
+
+
+                    //i = 15;
+                    //return;
+                //}
+            //}
+           // System.out.println(i+" "+resultMoveIsPossible);
+        //}
+        /*
         for (int i = 0; i < 15; i++) {
             resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(rect[i].getText()));
             if(point.x+100<400&&resultMoveIsPossible>0){
                 shiftPoint.setLocation(point.x+100,point.y);
 
                 if(rect[i].isMouseClicked(shiftPoint)&&resultMoveIsPossible>=0) {
-                    System.out.println("point.x+100<400"+point+" "+shiftPoint+ " "+rect[i].getText());
+                    //System.out.println("point.x+100<400"+point+" "+shiftPoint+ " "+rect[i].getText());
                     shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
                     if(currentRect>=0)
                         shift(resultMoveIsPossible, Integer.parseInt(rect[currentRect].getText()));
@@ -136,7 +162,7 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
                 shiftPoint.setLocation(point.x - 100, point.y);
 
                 if (rect[i].isMouseClicked(shiftPoint) && resultMoveIsPossible >= 0) {
-                    System.out.println("point.x-100>=0" + point + " " + shiftPoint+ " "+rect[i].getText());
+                    //System.out.println("point.x-100>=0" + point + " " + shiftPoint+ " "+rect[i].getText());
                     shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
                     if(currentRect>=0)
                         shift(resultMoveIsPossible, Integer.parseInt(rect[currentRect].getText()));
@@ -153,7 +179,7 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
                 shiftPoint.setLocation(point.x, point.y + 100);
 
                 if (rect[i].isMouseClicked(shiftPoint) && resultMoveIsPossible >= 0) {
-                    System.out.println("point.y+100<400" + point + " " + shiftPoint+ " "+rect[i].getText());
+                    //System.out.println("point.y+100<400" + point + " " + shiftPoint+ " "+rect[i].getText());
                     shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
                     if(currentRect>=0)
                         shift(resultMoveIsPossible, Integer.parseInt(rect[currentRect].getText()));
@@ -170,7 +196,7 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
                 shiftPoint.setLocation(point.x,point.y - 100);
 
                 if(rect[i].isMouseClicked(shiftPoint)&&resultMoveIsPossible>=0) {
-                    System.out.println("point.y-100>=0"+point+" "+shiftPoint+ " "+rect[i].getText());
+                    //System.out.println("point.y-100>=0"+point+" "+shiftPoint+ " "+rect[i].getText());
                     shift(resultMoveIsPossible, Integer.parseInt(rect[i].getText()));
                     if(currentRect>=0)
                         shift(resultMoveIsPossible, Integer.parseInt(rect[currentRect].getText()));
@@ -181,7 +207,7 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
                 }
             }
         }
-
+*/
     }
 
     @Override
