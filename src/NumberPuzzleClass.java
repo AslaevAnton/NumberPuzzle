@@ -6,7 +6,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class NumberPuzzleClass {/*
+public class NumberPuzzleClass {
+    static int count=0;
+    /*
     public static void main(String[] args) throws Exception {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int[] np = new int[16];
@@ -31,6 +33,11 @@ public class NumberPuzzleClass {/*
     //public int[] getNp() {
     //    return np;
     //}
+
+
+    public static int getCount() {
+        return count;
+    }
 
     public static void print(int[] np) {
         for(int i=0;i<16;i++) {
@@ -97,6 +104,7 @@ public class NumberPuzzleClass {/*
                         if ((i - 1) >= 0 && np[(i - 1) * 4 + j] == 99 && key == KeyEvent.VK_UP) {
                             np[(i - 1) * 4 + j] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
+                            count++;
                             return rezult;
                         }
                         //down
@@ -104,18 +112,21 @@ public class NumberPuzzleClass {/*
                             //return np[z];
                             np[(i + 1) * 4 + j] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
+                            count++;
                             return rezult;
                         }
                         //left
                         if ((j - 1) >= 0 && np[i * 4 + (j - 1)] == 99 && key == KeyEvent.VK_LEFT) {
                             np[i * 4 + (j - 1)] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
+                            count++;
                             return rezult;
                         }
                         //right
                         if ((j + 1) < 4 && np[i * 4 + (j + 1)] == 99 && key == KeyEvent.VK_RIGHT) {
                             np[i * 4 + (j + 1)] = np[i * 4 + j];
                             np[i * 4 + j] = 99;
+                            count++;
                             return rezult;
                         }
                     }

@@ -14,7 +14,8 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
     int tempRect=0;
     Timer mainTimer = new Timer(1, this); //Запускет actionPerform каждые .. милисекунд
     ArrayList<NumberPuzzleRect> shiftRectList = new ArrayList();
-    public NumberPuzzleFrame() {
+    JFrame f = new JFrame();
+    public NumberPuzzleFrame(JFrame f) {
         mainTimer.start();
         addMouseListener(this);
         addKeyListener(new MyKeyAdaptor());
@@ -28,13 +29,16 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
             rect[i]= new NumberPuzzleRect((i)%4,(i)/4, r, np[i]);
         }
 
+
+
+        this.f=f;
     }
 
     public void paint(Graphics g) {
         g=(Graphics2D)g;
 
         g.clearRect(0,0,700,600);
-        Font font = new Font("Arial", Font.ITALIC, 10);
+        Font font = new Font("Arial", Font.ITALIC, 12);
         for (int i = 0; i < 15; i++) {
             rect[i].draw(g);
 
@@ -42,8 +46,9 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
             //g.setFont(font);
             //g.drawString("x="+rect[i].getX()+" y="+rect[i].getY()+" dx:"+rect[i].getDx()+" dy:"+rect[i].getDy()+"text: "+rect[i].getText(), 450, 120+i*10);
         }
-        //g.setColor(Color.black);
-        //g.setFont(font);
+        g.setColor(Color.black);
+        g.setFont(font);
+        g.drawString("Ходов: "+String.valueOf(NumberPuzzleClass.getCount()), 450, 100);
         //g.drawString(Integer.toString(shiftRectList.size()),450, 120);
         //Iterator<NumberPuzzleRect> i = shiftRectList.iterator();
         //int pos=0;
@@ -52,6 +57,7 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
         //    pos++;
         //}
         //g.drawString(Integer.toString(emptyRect), 450, 100);
+
     }
 
     @Override
@@ -72,15 +78,18 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
         else {
 
             //rect[tempRect].shift();
+
             Iterator<NumberPuzzleRect> i = shiftRectList.iterator();
             while (i.hasNext()){
                 i.next();
                 i.remove();
             }
+
+            testWin();
         }
 
         repaint();
-        testWin();
+
 
     }
 
@@ -116,7 +125,7 @@ public class NumberPuzzleFrame extends JPanel implements ActionListener, MouseLi
 */
 
         //for (int i = 0; i < 15; i++) {
-            resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(shiftList.get(0).getText()));
+            if(shiftList.size()>0)resultMoveIsPossible=NumberPuzzleClass.moveIsPossible(np, Integer.parseInt(shiftList.get(0).getText()));
 
             //if(rect[i].isMouseClicked(e.getPoint())) {
                 //currentRect=i;

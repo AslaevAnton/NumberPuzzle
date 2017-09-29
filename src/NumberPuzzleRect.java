@@ -78,7 +78,7 @@ public class NumberPuzzleRect {
         g.drawRect(dx,dy,size,size);
 
         Font font = new Font("Arial", Font.ITALIC, size/2);
-        g.setColor(this.inPosition()?Color.green:Color.red);
+        g.setColor(this.inPosition()?Color.green:Color.darkGray);
         g.setFont(font);
         g.drawString(!text.equals("99")?text:"",(int)(dx+size/(2.8*text.length())), (int)(dy+size/1.5));
     }
